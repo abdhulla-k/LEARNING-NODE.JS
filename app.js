@@ -1,5 +1,6 @@
 // the function 'require()' using to import a module or something like below
 const http = require( 'http' ); // imported http module or object
+const fs = require( 'fs' ); // impored fs (file system) module to manipulate a file
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
 // you have to pass a callback function inside that function to handle request and response. The function you have 
@@ -11,6 +12,9 @@ const http = require( 'http' ); // imported http module or object
 const server = http.createServer( ( req, res ) => {
     // save or get route url from req
     const url = req.url;
+
+    // save the request method like below
+    const method = req.method;
 
     // console.log( req );
     // console.log( req.headers, req.url, req.method );
@@ -27,6 +31,19 @@ const server = http.createServer( ( req, res ) => {
         // must use .end(); at las of write() method like below
         return res.end();
     }
+
+    // redirect a page like below
+    if( url === "/message" && method === 'POST' ) {
+
+        // create or manipulate a file like below
+        fs.writeFileSync( 'messge.txt', 'Dummy' );
+
+        // redirect like below
+        res.statusCode = 302; // this is represend redirecting
+        res.setHeader( 'Location', '/' );
+        return res.end();
+    }
+
     // use second argument.setHeader to set header in your response;
     res.setHeader( 'Content-Type', 'text/html' );
 
