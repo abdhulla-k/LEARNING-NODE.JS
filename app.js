@@ -9,18 +9,31 @@ const http = require( 'http' ); // imported http module or object
 
 // eg.
 const server = http.createServer( ( req, res ) => {
+    // save or get route url from req
+    const url = req.url;
+
     // console.log( req );
     // console.log( req.headers, req.url, req.method );
     // write code here
     // process.exit();
 
+    // use routing like below
+    if( url === '/' ) {
+        // use second argument.write to write html in your response like below
+        res.write( "<html>" );
+        res.write( "<head><title>Enter message</title></head>" );
+        res.write( '<body><form method="POST" action="/message"> <input type="text" name="message"> <button type="submit">Send</button></form></body>' );
+        res.write( "</html>" );
+        // must use .end(); at las of write() method like below
+        return res.end();
+    }
     // use second argument.setHeader to set header in your response;
     res.setHeader( 'Content-Type', 'text/html' );
 
     // use second argument.write to write html in your response like below
     res.write( "<html>" );
     res.write( "<head><title> My First Page </title></head>" );
-    res.write( "<body><h1> Hellow from my Node.js server" );
+    res.write( "<body><h1> Hellow from my Node.js server </h1></body>" );
     res.write( "</html>" );
     // must use .end(); at las of write() method like below
     res.end();
