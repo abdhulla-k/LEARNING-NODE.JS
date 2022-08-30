@@ -9,9 +9,22 @@ const http = require( 'http' ); // imported http module or object
 
 // eg.
 const server = http.createServer( ( req, res ) => {
-    console.log( req );
+    // console.log( req );
+    // console.log( req.headers, req.url, req.method );
     // write code here
     // process.exit();
+
+    // use second argument.setHeader to set header in your response;
+    res.setHeader( 'Content-Type', 'text/html' );
+
+    // use second argument.write to write html in your response like below
+    res.write( "<html>" );
+    res.write( "<head><title> My First Page </title></head>" );
+    res.write( "<body><h1> Hellow from my Node.js server" );
+    res.write( "</html>" );
+    // must use .end(); at las of write() method like below
+    res.end();
+
 });
 
 server.listen( 3000 );
