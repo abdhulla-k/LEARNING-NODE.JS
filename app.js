@@ -43,14 +43,23 @@ const server = http.createServer( ( req, res ) => {
 
         req.on( 'end', () => {
             const parseBody = Buffer.concat( body ).toString();
-            
+
             // create or manipulate a file like below
-            fs.writeFileSync( 'messge.txt', 'Dummy' );
+            // there are two methods. writeFile() and writeFilesync().
+            // writeFileSync() working syncronously. it will block our cod.
+            // writeFile() method work asyncronously. but it has a third argument. that is a callback function to work
+            // if the process is completted. Actually it is using to handle errors.
+            fs.writeFile( 'messge.txt', 'Dummy', ( error ) => {
+                
+                // redirect like below
+                res.statusCode = 302; // this is represend redirecting
+                res.setHeader( 'Location', '/' );
+
+                // if you don't return end() function, every line of code after this will work after the execution of 
+                // these line;
+                return res.end();
+            });
     
-            // redirect like below
-            res.statusCode = 302; // this is represend redirecting
-            res.setHeader( 'Location', '/' );
-            return res.end();
         })
 
     }
