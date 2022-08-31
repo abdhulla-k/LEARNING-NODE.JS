@@ -2,7 +2,8 @@
 const http = require( 'http' ); // imported http module or object
 
 // import aur callback function from routes.js file
-const routes = require( './routes' );
+// const routes = require( './routes' );
+
 
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
@@ -12,7 +13,7 @@ const routes = require( './routes' );
 // we can use process.exit() to end the event loop. but we dont want to do that.
 
 // eg.
-const server = http.createServer( routes.handler );
+const server = http.createServer();
 
 // to start litening
 server.listen( 3000 );
