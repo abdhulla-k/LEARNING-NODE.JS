@@ -32,7 +32,8 @@ app.use( '/add-product', ( req, res, next ) => {
     res.send( '<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Submit</button></form>' );
 });
 
-app.use( '/product', ( req, res, next ) => {
+// use post() insted of using use() to filter post method.( we can use other functions like these );
+app.post( '/product', ( req, res, next ) => {
     console.log( req.body );
 
     // // use res.send() method to send a response
