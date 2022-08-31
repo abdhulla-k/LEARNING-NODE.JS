@@ -34,14 +34,25 @@ const server = http.createServer( ( req, res ) => {
 
     // redirect a page like below
     if( url === "/message" && method === 'POST' ) {
+        
+        // this is how to use and manipulate data coming with reques. also how to use Buffer and streems.
+        const body = [];
+        req.on( 'data', (chunk) => {
+            body.push( chunk );
+        });
 
-        // create or manipulate a file like below
-        fs.writeFileSync( 'messge.txt', 'Dummy' );
+        req.on( 'end', () => {
+            const parseBody = Buffer.concat( body ).toString();
+            
+            // create or manipulate a file like below
+            fs.writeFileSync( 'messge.txt', 'Dummy' );
+    
+            // redirect like below
+            res.statusCode = 302; // this is represend redirecting
+            res.setHeader( 'Location', '/' );
+            return res.end();
+        })
 
-        // redirect like below
-        res.statusCode = 302; // this is represend redirecting
-        res.setHeader( 'Location', '/' );
-        return res.end();
     }
 
     // use second argument.setHeader to set header in your response;
