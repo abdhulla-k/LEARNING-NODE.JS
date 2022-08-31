@@ -32,6 +32,11 @@ app.use( adminRoutes );
 
 app.use( shopRoutes );
 
+// add a 404 page
+app.use(( req, res, next ) => {
+    res.status( 404 ).send( "<h1>Page not found!</h1>" );
+});
+
 // http module has a method called 'createServer()'. It is using to create a server like below. 
 // you have to pass a callback function inside that function to handle request and response. The function you have 
 // passing into the createServer() function should have two parameters to handle request and resaponse; 
