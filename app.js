@@ -11,16 +11,24 @@ const express = require( "express" );
 const app = express();
 
 // it will only run top to bottom. you have to use next() to jump to next middle ware
-app.use(( req, res, next ) => {
-    console.log( "first middle ware" );
-    // you have to use next() method to jump to next middle ware like bellow
-    next(); // allow us to request to continue to the next middleware in line
-});
+// app.use(( req, res, next ) => {
+//     console.log( "first middle ware" );
+//     // you have to use next() method to jump to next middle ware like bellow
+//     next(); // allow us to request to continue to the next middleware in line
+// });
 
-app.use(( req, res, next ) => {
+
+// this is how we can use routing with express
+app.use( '/add-product', ( req, res, next ) => {
 
     // use res.send() method to send a response
-    res.send( "<h1>Hello From Express!</h1>" );
+    res.send( "<h1>Hello From Express! add product</h1>" );
+});
+
+app.use( '/', ( req, res, next ) => {
+
+    // use res.send() method to send a response
+    res.send( "<h1>Hello! home</h1>" );
 });
 
 
