@@ -7,6 +7,10 @@
 // import express.js
 const express = require( "express" );
 
+// import external routes
+const adminRoutes = require( "./routes/admin" );
+const shopRoutes = require( "./routes/shop" );
+
 // import body-parser; it is using to get data from request
 const bodyParser = require( "body-parser" );
 
@@ -24,31 +28,9 @@ const app = express();
 // use body parser
 app.use( bodyParser.urlencoded( { extended: false }));
 
+app.use( adminRoutes );
 
-// this is how we can use routing with express
-app.use( '/add-product', ( req, res, next ) => {
-
-    // use res.send() method to send a response
-    res.send( '<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Submit</button></form>' );
-});
-
-// use post() insted of using use() to filter post method.( we can use other functions like these );
-app.post( '/product', ( req, res, next ) => {
-    console.log( req.body );
-
-    // // use res.send() method to send a response
-    // res.send( "<h1>Hello! home</h1>" );
-
-    // use redirect() function to redirect like below
-    res.redirect( '/' );
-});
-
-app.use( '/', ( req, res, next ) => {
-
-    // use res.send() method to send a response
-    res.send( "<h1>Hello! home</h1>" );
-});
-
+app.use( shopRoutes );
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
 // you have to pass a callback function inside that function to handle request and response. The function you have 
