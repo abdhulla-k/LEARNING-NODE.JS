@@ -6,7 +6,7 @@ const router = express.Router();
 router.get( '/add-product', ( req, res, next ) => {
 
     // use res.send() method to send a response
-    res.send( '<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Submit</button></form>' );
+    res.send( '<form action="/admin/product" method="POST"><input type="text" name="title"><button type="submit">Submit</button></form>' );
 });
 
 // use post() insted of using use() to filter post method.( we can use other functions like these );
