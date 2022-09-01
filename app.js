@@ -45,7 +45,10 @@ app.use( shopRoutes );
 
 // add a 404 page
 app.use(( req, res, next ) => {
-    res.status( 404 ).sendFile( path.join( rootDir, 'views', '404.html' ));
+    // res.status( 404 ).sendFile( path.join( rootDir, 'views', '404.html' ));
+
+    // use pug file insted of html
+    res.status( 404 ).render( '404' );
 });
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
@@ -61,4 +64,4 @@ app.use(( req, res, next ) => {
 // server.listen( 3000 );
 
 // use app.listen(<posrt number>) function to able to listen from a browser. insted of writing mannually
-app.listen( 3000 );
+app.listen( 4000 );

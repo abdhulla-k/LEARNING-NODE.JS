@@ -12,7 +12,10 @@ const products = [];
 router.get( '/add-product', ( req, res, next ) => {
 
     // use res.send() method to send a response
-    res.sendFile( path.join( rootDir, 'views', 'add-product.html' ))
+    // res.sendFile( path.join( rootDir, 'views', 'add-product.html' ))
+
+    // render pug file
+    res.render( 'add-product', { pageTitle: 'Add Product' })
 });
 
 // use post() insted of using use() to filter post method.( we can use other functions like these );
