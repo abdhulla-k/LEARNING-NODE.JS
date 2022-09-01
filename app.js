@@ -4,6 +4,9 @@
 // import aur callback function from routes.js file
 // const routes = require( './routes' );
 
+// import path module
+const path = require( 'path' );
+
 // import express.js
 const express = require( "express" );
 
@@ -28,13 +31,13 @@ const app = express();
 // use body parser
 app.use( bodyParser.urlencoded( { extended: false }));
 
-app.use( '/admin', adminRoutes );
+app.use( adminRoutes );
 
 app.use( shopRoutes );
 
 // add a 404 page
 app.use(( req, res, next ) => {
-    res.status( 404 ).send( "<h1>Page not found!</h1>" );
+    res.status( 404 ).sendFile( path.join( __dirname, 'views', '404.html' ));
 });
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
