@@ -20,6 +20,9 @@ const bodyParser = require( "body-parser" );
 // get express as a function
 const app = express();
 
+// set path
+const rootDir = require( "./util/path" );
+
 // it will only run top to bottom. you have to use next() to jump to next middle ware
 // app.use(( req, res, next ) => {
 //     console.log( "first middle ware" );
@@ -37,7 +40,7 @@ app.use( shopRoutes );
 
 // add a 404 page
 app.use(( req, res, next ) => {
-    res.status( 404 ).sendFile( path.join( __dirname, 'views', '404.html' ));
+    res.status( 404 ).sendFile( path.join( rootDir, 'views', '404.html' ));
 });
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 

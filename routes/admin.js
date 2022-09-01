@@ -4,11 +4,13 @@ const express = require( "express" );
 
 const router = express.Router();
 
+const rootDir = require( "../util/path" );
+
 // this is how we can use routing with express
 router.get( '/add-product', ( req, res, next ) => {
 
     // use res.send() method to send a response
-    res.sendFile( path.join( __dirname, '../', 'views', 'add-product.html' ))
+    res.sendFile( path.join( rootDir, 'views', 'add-product.html' ))
 });
 
 // use post() insted of using use() to filter post method.( we can use other functions like these );
