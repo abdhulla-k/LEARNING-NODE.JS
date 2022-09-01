@@ -15,7 +15,7 @@ router.get( '/add-product', ( req, res, next ) => {
     // res.sendFile( path.join( rootDir, 'views', 'add-product.html' ))
 
     // render pug file
-    res.render( 'add-product', { pageTitle: 'Add Product' })
+    res.render( 'add-product', { pageTitle: 'Add Product', path: '/add-product' })
 });
 
 // use post() insted of using use() to filter post method.( we can use other functions like these );
