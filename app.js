@@ -20,6 +20,10 @@ const bodyParser = require( "body-parser" );
 // get express as a function
 const app = express();
 
+// set template engine
+app.set( 'view engine', 'pug' );
+app.set( 'views', 'views' );
+
 // set path
 const rootDir = require( "./util/path" );
 

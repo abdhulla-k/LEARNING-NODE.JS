@@ -13,7 +13,11 @@ router.get( '/', ( req, res, next ) => {
     // res.send( "<h1>Hello! home</h1>" );
 
     // pass html pages return
-    res.sendFile( path.join( rootDir, 'views', 'shop.html' ));
+    // res.sendFile( path.join( rootDir, 'views', 'shop.html' ));
+    
+
+    // respond a pug file
+    res.render( 'shop' );
 });
 
 module.exports = router;
