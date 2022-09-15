@@ -10,6 +10,9 @@ const path = require( 'path' );
 // import express.js
 const express = require( "express" );
 
+// import hbs
+const expressHbs = require( 'express-handlebars' );
+
 // import external routes
 const adminData = require( "./routes/admin" );
 const shopRoutes = require( "./routes/shop" );
@@ -21,7 +24,8 @@ const bodyParser = require( "body-parser" );
 const app = express();
 
 // set template engine
-app.set( 'view engine', 'pug' );
+app.engine( 'hbs', expressHbs());
+app.set( 'view engine', 'hbs' );
 app.set( 'views', 'views' );
 
 // set path
@@ -48,7 +52,7 @@ app.use(( req, res, next ) => {
     // res.status( 404 ).sendFile( path.join( rootDir, 'views', '404.html' ));
 
     // use pug file insted of html
-    res.status( 404 ).render( '404' );
+    res.status( 404 ).render( '404', { pageTitle: "Page not found" });
 });
 
 // http module has a method called 'createServer()'. It is using to create a server like below. 
