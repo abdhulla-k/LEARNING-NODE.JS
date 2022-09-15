@@ -24,7 +24,14 @@ const bodyParser = require( "body-parser" );
 const app = express();
 
 // set template engine
-app.engine( 'hbs', expressHbs());
+app.engine( 
+    'hbs', 
+    expressHbs({
+        layoutsDir: 'views/layouts/', 
+        default: 'main_layout',
+        extname: 'hbs'
+    })
+);
 app.set( 'view engine', 'hbs' );
 app.set( 'views', 'views' );
 

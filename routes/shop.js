@@ -18,7 +18,13 @@ router.get( '/', ( req, res, next ) => {
 
     // respond a pug file
     const products = adminData.products;
-    res.render( 'shop', { prods: products , docTitle: 'Shop', path: '/shop' });
+    console.log( products.length > 0 );
+    res.render( 'shop', {
+        prods: products , 
+        docTitle: 'Shop', 
+        path: '/shop', 
+        hasProduct: products.length > 0
+    });
 });
 
 module.exports = router;
